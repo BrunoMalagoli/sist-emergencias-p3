@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v8.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v8.0": {
+      "P3-EMERGENCIAS/1.0.0": {
+        "runtime": {
+          "P3-EMERGENCIAS.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "P3-EMERGENCIAS/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
