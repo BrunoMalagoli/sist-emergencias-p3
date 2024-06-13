@@ -11,23 +11,55 @@ namespace Emergencias
     public class CListaVehiculos
     {
         private static ArrayList AutosCollection;
-        private static ArrayList AmbulanciasCollection; 
+        private static ArrayList AmbulanciasCollection;
+        private static ArrayList TotalVehiculos;
         public CListaVehiculos()
         {
             AutosCollection = new ArrayList();
             AmbulanciasCollection = new ArrayList();
-
+            TotalVehiculos = new ArrayList();
         }
-        internal void CargarAuto(string patente, string modelo, string marca)
+        public void CargarAuto(string patente, string modelo, string marca)
         {
             CAuto AutoInstancia = new CAuto(patente , marca, modelo);
             AutosCollection.Add(AutoInstancia);
         }
-        internal void CargarAmbulancia( string patente , string modelo, string marca , string tipo)
+        public void CargarAmbulancia( string patente , string modelo, string marca , string tipo)
         {
             CAmbulancia AmbulanciaInstancia = new CAmbulancia(patente , modelo, marca , tipo);
             AmbulanciasCollection.Add(AmbulanciaInstancia);
         }
+        private void MostrarDatosVehiculo(CAuto auto)
+        {
+            Console.WriteLine("{0}    {1}    {2}  ", auto.DarPatente() , auto.DarMarca() , auto.DarModelo());
+        }
+        private void MostrarDatosVehiculo(CAmbulancia ambu)
+        {
+            Console.WriteLine("{0}    {1}    {2}    {3}", ambu.DarPatente() , ambu.DarMarca() , ambu.DarModelo() , ambu.DarTipoAmbulancia() );
+        }
+        private void JuntarListas()
+        {
+            TotalVehiculos.AddRange(AmbulanciasCollection);
+            TotalVehiculos.AddRange(AutosCollection);
+        }
+
+        public void MostrarTodosVehiculos()
+        {
+            JuntarListas();
+            foreach (object vehiculo in TotalVehiculos)
+            {
+                if (vehiculo is CAuto)
+                {
+                    MostrarDatosVehiculo((CAuto)vehiculo);
+                }
+                else if (vehiculo is CAmbulancia)
+                {
+                    MostrarDatosVehiculo((CAmbulancia)vehiculo);
+                }
+            }
+        }
+
+        //METODOS PARA TESTEAR
         internal void MostrarListaAutos()
         {
             foreach (CAuto Autos in AutosCollection)

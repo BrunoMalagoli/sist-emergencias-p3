@@ -23,6 +23,9 @@ namespace Emergencias
             Console.WriteLine("1.Desea cargar empleados?");
             Console.WriteLine("2.Desea cargar vehiculos?");
             Console.WriteLine("3.Asignar Dotacion");
+            Console.WriteLine("4.Buscar empleado por ID");
+            Console.WriteLine("5.Mostrar todos los empleados");
+            Console.WriteLine("6.Mostrar todos los vehiculos");
             Console.WriteLine("0.Salir");
             opMenu = Console.ReadLine();
             if (opMenu != null && opMenu != "0")
@@ -76,6 +79,7 @@ namespace Emergencias
                             uint.TryParse(Console.ReadLine(), out numRegistroConducir);      //COMPROBACION TRYPARSE
                             Console.WriteLine("Distrito de Emision de Registro Conducir : ");
                             distritoEmisionReg = Console.ReadLine();
+                            listaEmpleados.CargarChofer(codIdentPersonal, apellido, nombre, numRegistroConducir, distritoEmisionReg);
                             MostrarMenu();
                             break;
                         case "2":
@@ -134,9 +138,8 @@ namespace Emergencias
                             Console.WriteLine("Modelo: ");
                             modelo = Console.ReadLine();
                         } while (patente == null || marca == null || modelo == null);
-                        CListaVehiculos lista = new CListaVehiculos(); // CAMBIAR POR LA LISTA DEL MENU
-                        lista.CargarAuto(patente, modelo, marca);
-                        lista.MostrarListaAutos();
+                        listaVehiculos.CargarAuto(patente, modelo, marca);
+                        MostrarMenu();
                     }
                     else if (opVehiculo == "2")
                     {
@@ -157,9 +160,8 @@ namespace Emergencias
                             Console.WriteLine("Modelo: ");
                             modelo = Console.ReadLine();
                         } while (patente == null || marca == null || modelo == null || tipo == null);
-                        CListaVehiculos lista = new CListaVehiculos(); // CAMBIAR POR LA LISTA DEL MENU
-                        lista.CargarAmbulancia(patente, modelo, marca, tipo);
-                        lista.MostrarListaAmbulancias();
+                        listaVehiculos.CargarAmbulancia(patente, modelo, marca, tipo);
+                        MostrarMenu();
 
                     }
                     break;
@@ -171,6 +173,12 @@ namespace Emergencias
                     ulong IdEmp;
                     ulong.TryParse( Console.ReadLine() , out IdEmp);
                     listaEmpleados.BuscarEmpleadoPorId(IdEmp);
+                    break;
+                case "5":
+                    listaEmpleados.MostrarListaEmpleados();
+                    break;
+                case "6":
+                    listaVehiculos.MostrarTodosVehiculos();
                     break;
                 default:
                     break;
