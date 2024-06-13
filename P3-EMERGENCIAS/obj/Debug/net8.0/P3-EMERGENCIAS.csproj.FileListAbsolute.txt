@@ -12,3 +12,4 @@ D:\UTN\Programacion3\P3-EMERGENCIAS\P3-EMERGENCIAS\obj\Debug\net8.0\refint\P3-EM
 D:\UTN\Programacion3\P3-EMERGENCIAS\P3-EMERGENCIAS\obj\Debug\net8.0\P3-EMERGENCIAS.pdb
 D:\UTN\Programacion3\P3-EMERGENCIAS\P3-EMERGENCIAS\obj\Debug\net8.0\P3-EMERGENCIAS.genruntimeconfig.cache
 D:\UTN\Programacion3\P3-EMERGENCIAS\P3-EMERGENCIAS\obj\Debug\net8.0\ref\P3-EMERGENCIAS.dll
+D:\UTN\Programacion3\P3-EMERGENCIAS\P3-EMERGENCIAS\obj\Debug\net8.0\P3-EMERGENCIAS.sourcelink.json

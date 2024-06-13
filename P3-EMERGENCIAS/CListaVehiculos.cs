@@ -10,9 +10,14 @@ namespace Emergencias
 {
     public class CListaVehiculos
     {
-        private static ArrayList AutosCollection = new ArrayList();
-        private static ArrayList AmbulanciasCollection = new ArrayList();
-        
+        private static ArrayList AutosCollection;
+        private static ArrayList AmbulanciasCollection; 
+        public CListaVehiculos()
+        {
+            AutosCollection = new ArrayList();
+            AmbulanciasCollection = new ArrayList();
+
+        }
         internal void CargarAuto(string patente, string modelo, string marca)
         {
             CAuto AutoInstancia = new CAuto(patente , marca, modelo);
@@ -27,19 +32,19 @@ namespace Emergencias
         {
             foreach (CAuto Autos in AutosCollection)
             {
-                Console.WriteLine(Autos.patente);
-                Console.WriteLine(Autos.marca);
-                Console.WriteLine(Autos.modelo);
+                Console.WriteLine(Autos.DarPatente());
+                Console.WriteLine(Autos.DarMarca());
+                Console.WriteLine(Autos.DarModelo());
             }
         }
         internal void MostrarListaAmbulancias()
         {
             foreach (CAmbulancia Ambu in AmbulanciasCollection)
             {
-                Console.WriteLine(Ambu._tipoAmbulancia);
-                Console.WriteLine(Ambu.patente);
-                Console.WriteLine(Ambu.marca);
-                Console.WriteLine(Ambu.modelo);
+                Console.WriteLine(Ambu.DarTipoAmbulancia());
+                Console.WriteLine(Ambu.DarPatente());
+                Console.WriteLine(Ambu.DarMarca());
+                Console.WriteLine(Ambu.DarModelo());
             }
         }
     }

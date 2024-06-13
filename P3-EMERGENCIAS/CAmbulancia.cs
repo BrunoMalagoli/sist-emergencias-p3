@@ -6,16 +6,20 @@ using System.Threading.Tasks;
 
 namespace Emergencias
 {
-    internal class CAmbulancia : CVehiculo
+    public class CAmbulancia : CVehiculo
     {
-        internal string _tipoAmbulancia;
-        public CAmbulancia(string pat, string mar, string mod, string tipoAmbulancia)
+        private string tipoAmbulancia;
+        public CAmbulancia(string pat, string mar, string mod, string tipoAm)
         {
             this.patente = pat;
             this.modelo = mod;
             this.marca = mar;
-            _tipoAmbulancia = tipoAmbulancia;
+            tipoAmbulancia = tipoAm;
         }
 
+        public string DarTipoAmbulancia()
+        {
+            return this.tipoAmbulancia;
+        }
     }
 }
