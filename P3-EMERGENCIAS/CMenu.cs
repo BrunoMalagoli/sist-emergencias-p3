@@ -20,13 +20,16 @@ namespace Emergencias
         public void MostrarMenu()
         {
             string? opMenu;
-            Console.WriteLine("1.Desea cargar empleados?");
-            Console.WriteLine("2.Desea cargar vehiculos?");
-            Console.WriteLine("3.Asignar Dotacion");
-            Console.WriteLine("4.Buscar empleado por ID");
-            Console.WriteLine("5.Mostrar todos los empleados");
-            Console.WriteLine("6.Mostrar todos los vehiculos");
-            Console.WriteLine("0.Salir");
+            Console.WriteLine("\t==============================");
+            Console.WriteLine("\t1.Desea cargar empleados?");
+            Console.WriteLine("\t2.Desea cargar vehiculos?");
+            Console.WriteLine("\t3.Asignar Dotacion");
+            Console.WriteLine("\t4.Buscar empleado por ID");
+            Console.WriteLine("\t5.Mostrar todos los empleados");
+            Console.WriteLine("\t6.Mostrar todos los vehiculos");
+            Console.WriteLine("\t0.Salir");
+            Console.WriteLine("\t==============================");
+            Console.Write("\t>");
             opMenu = Console.ReadLine();
             if (opMenu != null && opMenu != "0")
             {
@@ -38,7 +41,7 @@ namespace Emergencias
                 {
                     Console.WriteLine("Hasta la proxima!");
                 }
-                Console.WriteLine("El valor ingresado no es valido, ingrese una opcion del menu");
+                Console.WriteLine("\tEl valor ingresado no es valido, ingrese una opcion del menu");
             }
         }
 
@@ -61,36 +64,43 @@ namespace Emergencias
                     ushort numMatricula;
                     string? categoria;
 
-                    Console.WriteLine("Ingrese Codigo de Identificacion Personal : ");  //Creacion secuencial cada vez que ingrese uno nuevo o manual por el usuario?
+                    Console.Write("Ingrese Codigo de Identificacion Personal : ");  //Creacion secuencial cada vez que ingrese uno nuevo o manual por el usuario?
                     ulong.TryParse(Console.ReadLine(), out codIdentPersonal);      //COMPROBACION TRYPARSE      
-                    Console.WriteLine("Ingrese Apellido : ");
+                    Console.Write("Ingrese Apellido : ");
                     apellido = Console.ReadLine();
-                    Console.WriteLine("Ingrese Nombre : ");
+                    Console.Write("Ingrese Nombre : ");
                     nombre = Console.ReadLine();
                     Console.WriteLine("Seleccione su ocupacion : ");
-                    Console.WriteLine("1. Chofer");
-                    Console.WriteLine("2. Profesional");
+                    Console.WriteLine("\t1. Chofer");
+                    Console.WriteLine("\t2. Profesional");
+                    Console.Write(">");
                     ocupacion = Console.ReadLine();
                     switch (ocupacion)
                     {
 
                         case "1":
-                            Console.WriteLine("Num Registro de Conducir : ");
+                            Console.Write("Num Registro de Conducir : ");
                             uint.TryParse(Console.ReadLine(), out numRegistroConducir);      //COMPROBACION TRYPARSE
-                            Console.WriteLine("Distrito de Emision de Registro Conducir : ");
+                            Console.Write("Distrito de Emision de Registro Conducir : ");
                             distritoEmisionReg = Console.ReadLine();
                             listaEmpleados.CargarChofer(codIdentPersonal, apellido, nombre, numRegistroConducir, distritoEmisionReg);
                             MostrarMenu();
                             break;
                         case "2":
-                            Console.WriteLine("Num Matricula : ");
+                            Console.Write("Num Matricula : ");
                             bool parsed = ushort.TryParse(Console.ReadLine(), out numMatricula); //COMPROBACION TRYPARSE
+                            while (!parsed){
+                                Console.WriteLine("Num Matricula erróneo (supera 65535). Reintentando.");
+                                Console.Write("Num Matricula:");
+                                parsed = ushort.TryParse(Console.ReadLine(), out numMatricula); //NUEVA COMPROBACION TRYPARSE
+                            }
                             do
                             {
                                 Console.WriteLine("Seleccione su Categoria : ");
-                                Console.WriteLine("1. Medico");
-                                Console.WriteLine("2. Enfermero");
-                                Console.WriteLine("3. Paramedico");
+                                Console.WriteLine("\t1. Medico");
+                                Console.WriteLine("\t2. Enfermero");
+                                Console.WriteLine("\t3. Paramedico");
+                                Console.Write(">");
                                 categoria = Console.ReadLine();
                                 switch (categoria)
                                 {
@@ -120,8 +130,9 @@ namespace Emergencias
                     //Metodo carga datos vehiculos (Elegir vehiculo ListaVehiculos)
                     string? opVehiculo;
                     Console.WriteLine("Que tipo de vehiculo desea cargar?");
-                    Console.WriteLine("1.Auto");
-                    Console.WriteLine("2.Ambulancia");
+                    Console.WriteLine("\t1.Auto");
+                    Console.WriteLine("\t2.Ambulancia");
+                    Console.Write(">");
                     opVehiculo = Console.ReadLine();
                     if (opVehiculo == "1")
                     {
@@ -131,11 +142,11 @@ namespace Emergencias
                         string? marca;
                         do
                         {
-                            Console.WriteLine("Patente : ");
+                            Console.Write("Patente : ");
                             patente = Console.ReadLine();
-                            Console.WriteLine("Marca : ");
+                            Console.Write("Marca : ");
                             marca = Console.ReadLine();
-                            Console.WriteLine("Modelo: ");
+                            Console.Write("Modelo: ");
                             modelo = Console.ReadLine();
                         } while (patente == null || marca == null || modelo == null);
                         listaVehiculos.CargarAuto(patente, modelo, marca);
@@ -153,11 +164,11 @@ namespace Emergencias
                         {
                             Console.WriteLine("Tipo de ambulancia : ");
                             tipo = Console.ReadLine();
-                            Console.WriteLine("Patente : ");
+                            Console.Write("Patente : ");
                             patente = Console.ReadLine();
-                            Console.WriteLine("Marca : ");
+                            Console.Write("Marca : ");
                             marca = Console.ReadLine();
-                            Console.WriteLine("Modelo: ");
+                            Console.Write("Modelo: ");
                             modelo = Console.ReadLine();
                         } while (patente == null || marca == null || modelo == null || tipo == null);
                         listaVehiculos.CargarAmbulancia(patente, modelo, marca, tipo);
@@ -169,7 +180,7 @@ namespace Emergencias
                     //Metodo asignar dotacion
                     break;
                 case "4":
-                    Console.WriteLine("Ingrese Id para buscar empleado: ");
+                    Console.Write("Ingrese Id para buscar empleado: ");
                     ulong IdEmp;
                     ulong.TryParse( Console.ReadLine() , out IdEmp);
                     listaEmpleados.BuscarEmpleadoPorId(IdEmp);
