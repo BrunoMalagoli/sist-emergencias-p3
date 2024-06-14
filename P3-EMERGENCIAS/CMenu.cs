@@ -40,6 +40,7 @@ namespace Emergencias
                 if (opMenu == "0")
                 {
                     Console.WriteLine("\n\tHasta la proxima!\n");
+                    Console.ReadLine();
                 }
             }
         }
@@ -179,12 +180,18 @@ namespace Emergencias
                     ulong IdEmp;
                     ulong.TryParse( Console.ReadLine() , out IdEmp);
                     listaEmpleados.BuscarEmpleadoPorId(IdEmp);
+                    Console.Write("\n\t(presione Enter para continuar)");
+                    Console.ReadLine();
                     break;
                 case "5":
                     listaEmpleados.MostrarListaEmpleados();
+                    Console.Write("\n\t(presione Enter para continuar)");
+                    Console.ReadLine();
                     break;
                 case "6":
                     listaVehiculos.MostrarTodosVehiculos();
+                    Console.Write("\n\t(presione Enter para continuar)");
+                    Console.ReadLine();
                     break;
                 default:
                     Console.WriteLine("\n\tEl valor ingresado no es valido, ingrese una opcion del menú.\n");
