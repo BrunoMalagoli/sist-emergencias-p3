@@ -36,15 +36,12 @@ namespace Emergencias
         }
         private void MostrarDatosEmpleado(CChofer empleadoChof)
         {
-            //"{0,-10}{1,-10}{2,-10}{3,-10}{4,-10}","ID", "APELLIDO", "NOMBRE", "MAT/REG", "CAT/DIST"
-
             Console.WriteLine("{0,-10}{1,-10}{2,-10}{3,-10}{4,-10}",
                 empleadoChof.DarId().ToString(), 
                 empleadoChof.DarApellido(), 
                 empleadoChof.DarNombre(), 
                 empleadoChof.DarNumRegistro().ToString(),
                 empleadoChof.DarDistritoEmision());
-                //Console.WriteLine("{0}    {1}    {2}    {3}    {4}" , empleadoChof.DarId() , empleadoChof.DarApellido() , empleadoChof.DarNombre(), empleadoChof.DarNumRegistro(), empleadoChof.DarDistritoEmision());
         }
         private void MostrarDatosEmpleado(CProfesional empleadoPro)
         {
@@ -54,7 +51,6 @@ namespace Emergencias
                 empleadoPro.DarNombre(), 
                 empleadoPro.DarMatricula().ToString(), 
                 empleadoPro.DarCategoria());
-            //Console.WriteLine("{0}    {1}    {2}    {3}    {4}", empleadoPro.DarId(), empleadoPro.DarApellido(), empleadoPro.DarNombre(), empleadoPro.DarMatricula(), empleadoPro.DarCategoria());
         }
 
         public void MostrarListaEmpleados()

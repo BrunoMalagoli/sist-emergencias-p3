@@ -39,9 +39,8 @@ namespace Emergencias
             {
                 if (opMenu == "0")
                 {
-                    Console.WriteLine("Hasta la proxima!");
+                    Console.WriteLine("\n\tHasta la proxima!\n");
                 }
-                Console.WriteLine("\tEl valor ingresado no es valido, ingrese una opcion del menu");
             }
         }
 
@@ -84,7 +83,6 @@ namespace Emergencias
                             Console.Write("Distrito de Emision de Registro Conducir : ");
                             distritoEmisionReg = Console.ReadLine();
                             listaEmpleados.CargarChofer(codIdentPersonal, apellido, nombre, numRegistroConducir, distritoEmisionReg);
-                            MostrarMenu();
                             break;
                         case "2":
                             Console.Write("Num Matricula : ");
@@ -119,7 +117,6 @@ namespace Emergencias
                                 }
                             } while (categoria == null || !parsed);
                             listaEmpleados.CargarProfesional(codIdentPersonal, apellido, nombre, numMatricula, categoria);
-                            MostrarMenu();
                             break;
                             
                     }
@@ -150,7 +147,6 @@ namespace Emergencias
                             modelo = Console.ReadLine();
                         } while (patente == null || marca == null || modelo == null);
                         listaVehiculos.CargarAuto(patente, modelo, marca);
-                        MostrarMenu();
                     }
                     else if (opVehiculo == "2")
                     {
@@ -172,7 +168,6 @@ namespace Emergencias
                             modelo = Console.ReadLine();
                         } while (patente == null || marca == null || modelo == null || tipo == null);
                         listaVehiculos.CargarAmbulancia(patente, modelo, marca, tipo);
-                        MostrarMenu();
 
                     }
                     break;
@@ -192,8 +187,10 @@ namespace Emergencias
                     listaVehiculos.MostrarTodosVehiculos();
                     break;
                 default:
+                    Console.WriteLine("\n\tEl valor ingresado no es valido, ingrese una opcion del menú.\n");
                     break;
             }
+            MostrarMenu();
         }
     }
 }
