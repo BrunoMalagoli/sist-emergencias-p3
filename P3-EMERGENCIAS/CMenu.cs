@@ -40,6 +40,7 @@ namespace Emergencias
                 if (opMenu == "0")
                 {
                     Console.WriteLine("\n\tHasta la proxima!\n");
+                    Console.Write("(presione Enter para finalizar...)");
                     Console.ReadLine();
                 }
             }

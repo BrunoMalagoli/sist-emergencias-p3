@@ -57,6 +57,7 @@ namespace Emergencias
                     MostrarDatosVehiculo((CAmbulancia)vehiculo);
                 }
             }
+            TotalVehiculos.Clear();
         }
 
         //METODOS PARA TESTEAR

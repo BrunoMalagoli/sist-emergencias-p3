@@ -69,6 +69,7 @@ namespace Emergencias
                 }
                
             }
+            TotalEmpleados.Clear();
         }
         public void BuscarEmpleadoPorId(ulong idEmp)
         {
@@ -100,6 +101,7 @@ namespace Emergencias
                     }
                 }
             }
+            TotalEmpleados.Clear();
             Console.WriteLine("No se encontro resultado");
         }
     }
