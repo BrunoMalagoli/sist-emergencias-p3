@@ -36,17 +36,31 @@ namespace Emergencias
         }
         private void MostrarDatosEmpleado(CChofer empleadoChof)
         {
-            Console.WriteLine("{0}    {1}    {2}    {3}    {4}" , empleadoChof.DarId() , empleadoChof.DarApellido() , empleadoChof.DarNombre(), empleadoChof.DarNumRegistro(), empleadoChof.DarDistritoEmision());
+            //"{0,-10}{1,-10}{2,-10}{3,-10}{4,-10}","ID", "APELLIDO", "NOMBRE", "MAT/REG", "CAT/DIST"
+
+            Console.WriteLine("{0,-10}{1,-10}{2,-10}{3,-10}{4,-10}",
+                empleadoChof.DarId().ToString(), 
+                empleadoChof.DarApellido(), 
+                empleadoChof.DarNombre(), 
+                empleadoChof.DarNumRegistro().ToString(),
+                empleadoChof.DarDistritoEmision());
+                //Console.WriteLine("{0}    {1}    {2}    {3}    {4}" , empleadoChof.DarId() , empleadoChof.DarApellido() , empleadoChof.DarNombre(), empleadoChof.DarNumRegistro(), empleadoChof.DarDistritoEmision());
         }
         private void MostrarDatosEmpleado(CProfesional empleadoPro)
         {
-            Console.WriteLine("{0}    {1}    {2}    {3}    {4}", empleadoPro.DarId(), empleadoPro.DarApellido(), empleadoPro.DarNombre(), empleadoPro.DarMatricula(), empleadoPro.DarCategoria());
+            Console.WriteLine("{0,-10}{1,-10}{2,-10}{3,-10}{4,-10}", 
+                empleadoPro.DarId().ToString(), 
+                empleadoPro.DarApellido(), 
+                empleadoPro.DarNombre(), 
+                empleadoPro.DarMatricula().ToString(), 
+                empleadoPro.DarCategoria());
+            //Console.WriteLine("{0}    {1}    {2}    {3}    {4}", empleadoPro.DarId(), empleadoPro.DarApellido(), empleadoPro.DarNombre(), empleadoPro.DarMatricula(), empleadoPro.DarCategoria());
         }
 
         public void MostrarListaEmpleados()
         {
             JuntarListas();
-            Console.WriteLine("ID    APELLIDO    NOMBRE    MAT/REG    CAT/DIST");
+            Console.WriteLine("{0,-10}{1,-10}{2,-10}{3,-10}{4,-10}","ID", "APELLIDO", "NOMBRE", "MAT/REG", "CAT/DIST");
             foreach (object empleado in TotalEmpleados)
             {
                 if (empleado is CChofer)
@@ -68,14 +82,24 @@ namespace Emergencias
                 if(empleado is CChofer)
                 {
                     if(idEmp == ((CChofer)empleado).DarId()){
-                        Console.WriteLine("{0}   {1}   {2}   {3}   {4}", ((CChofer)empleado).DarId(), ((CChofer)empleado).DarNombre(), ((CChofer)empleado).DarApellido(), ((CChofer)empleado).DarNumRegistro(), ((CChofer)empleado).DarDistritoEmision());
+                        Console.WriteLine("{0,-10}{1,-10}{2,-10}{3,-10}{4,-10}",
+                            ((CChofer)empleado).DarId().ToString(), 
+                            ((CChofer)empleado).DarNombre(), 
+                            ((CChofer)empleado).DarApellido(), 
+                            ((CChofer)empleado).DarNumRegistro().ToString(), 
+                            ((CChofer)empleado).DarDistritoEmision());
                         return;
                     }
                 }else if(empleado is CProfesional)
                 {
                     if (idEmp == ((CProfesional)empleado).DarId())
                     {
-                        Console.WriteLine("{0}   {1}   {2}   {3}   {4}", ((CProfesional)empleado).DarId(), ((CProfesional)empleado).DarNombre(), ((CProfesional)empleado).DarApellido(), ((CProfesional)empleado).DarMatricula(), ((CProfesional)empleado).DarCategoria());
+                        Console.WriteLine("{0,-10}{1,-10}{2,-10}{3,-10}{4,-10}",
+                            ((CProfesional)empleado).DarId().ToString(), 
+                            ((CProfesional)empleado).DarNombre(), 
+                            ((CProfesional)empleado).DarApellido(), 
+                            ((CProfesional)empleado).DarMatricula().ToString(), 
+                            ((CProfesional)empleado).DarCategoria());   
                         return;
                     }
                 }
