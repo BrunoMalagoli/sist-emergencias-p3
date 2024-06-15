@@ -71,6 +71,23 @@ namespace Emergencias
             }
             TotalEmpleados.Clear();
         }
+        public void MostrarChoferes()
+        {
+            foreach(CChofer chofer in ChoferCollection)
+            {
+                Console.WriteLine(chofer.ToString());
+            }
+            return;
+        }
+
+        public void MostrarProfesionales()
+        {
+            foreach(CProfesional pro in ProfesionalesCollection)
+            {
+                Console.WriteLine(pro.ToString());
+            }
+            return;
+        }
         public void BuscarEmpleadoPorId(ulong idEmp)
         {
             JuntarListas();

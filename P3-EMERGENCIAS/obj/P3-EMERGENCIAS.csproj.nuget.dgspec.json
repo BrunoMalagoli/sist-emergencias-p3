@@ -1,24 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "N:\\PROGRAMACION UTN\\TERCER CUATRIMESTRE\\PROGRAMACION III\\sist-emergencias-p3\\P3-EMERGENCIAS\\P3-EMERGENCIAS.csproj": {}
+    "D:\\UTN\\Programacion3\\P3-EMERGENCIAS\\P3-EMERGENCIAS\\P3-EMERGENCIAS.csproj": {}
   },
   "projects": {
-    "N:\\PROGRAMACION UTN\\TERCER CUATRIMESTRE\\PROGRAMACION III\\sist-emergencias-p3\\P3-EMERGENCIAS\\P3-EMERGENCIAS.csproj": {
+    "D:\\UTN\\Programacion3\\P3-EMERGENCIAS\\P3-EMERGENCIAS\\P3-EMERGENCIAS.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "N:\\PROGRAMACION UTN\\TERCER CUATRIMESTRE\\PROGRAMACION III\\sist-emergencias-p3\\P3-EMERGENCIAS\\P3-EMERGENCIAS.csproj",
+        "projectUniqueName": "D:\\UTN\\Programacion3\\P3-EMERGENCIAS\\P3-EMERGENCIAS\\P3-EMERGENCIAS.csproj",
         "projectName": "P3-EMERGENCIAS",
-        "projectPath": "N:\\PROGRAMACION UTN\\TERCER CUATRIMESTRE\\PROGRAMACION III\\sist-emergencias-p3\\P3-EMERGENCIAS\\P3-EMERGENCIAS.csproj",
-        "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
-        "outputPath": "N:\\PROGRAMACION UTN\\TERCER CUATRIMESTRE\\PROGRAMACION III\\sist-emergencias-p3\\P3-EMERGENCIAS\\obj\\",
+        "projectPath": "D:\\UTN\\Programacion3\\P3-EMERGENCIAS\\P3-EMERGENCIAS\\P3-EMERGENCIAS.csproj",
+        "packagesPath": "C:\\Users\\bmala\\.nuget\\packages\\",
+        "outputPath": "D:\\UTN\\Programacion3\\P3-EMERGENCIAS\\P3-EMERGENCIAS\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\user\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\bmala\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -26,7 +22,6 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -65,7 +60,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.300/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.204/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

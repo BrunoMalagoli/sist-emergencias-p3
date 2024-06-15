@@ -8,13 +8,15 @@ namespace Emergencias
 {
     public class CMenu
     {
-        private CListaVehiculos listaVehiculos;
-        private CListaEmpleados listaEmpleados;
+        private static CListaVehiculos listaVehiculos;
+        private static CListaEmpleados listaEmpleados;
+        private static CListaDotaciones listaDotaciones;
    
         public CMenu()
         {
             listaVehiculos = new CListaVehiculos();
             listaEmpleados = new CListaEmpleados();
+            listaDotaciones = new CListaDotaciones();   
         }
 
         public void MostrarMenu()
@@ -182,6 +184,22 @@ namespace Emergencias
                     break;
                 case "3":
                     //Metodo asignar dotacion
+                    CDotacion nuevaDotacion = new CDotacion();
+                    listaEmpleados.MostrarChoferes();
+                    nuevaDotacion.AsignarChofer();
+                    listaEmpleados.MostrarProfesionales();
+                    nuevaDotacion.AsignarProfesionales();
+                    if(nuevaDotacion.DarCantidadProfesionales() > 1)
+                    {
+                        listaVehiculos.MostrarListaAmbulancias();
+                    }
+                    else
+                    {
+                        listaVehiculos.MostrarListaAutos();
+                    }
+                    nuevaDotacion.AsignarVehiculo();
+                    listaDotaciones.AgregarDotacion(nuevaDotacion);
+                    MostrarMenu();
                     break;
                 case "4":
                     Console.Write("Ingrese Id para buscar empleado: ");
