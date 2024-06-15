@@ -15,6 +15,14 @@ namespace Emergencias
              ColeccionDotaciones = new ArrayList();
         }
 
+        public void DarDotaciones()
+        {
+            foreach(CDotacion dota in ColeccionDotaciones)
+            {
+                dota.MostrarDotacion();
+            }
+        }
+
         public void AgregarDotacion(CDotacion dotacionRef)
         {
             ColeccionDotaciones.Add(dotacionRef);

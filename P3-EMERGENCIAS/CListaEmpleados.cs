@@ -73,18 +73,20 @@ namespace Emergencias
         }
         public void MostrarChoferes()
         {
+            Console.WriteLine("Lista de choferes : ");
             foreach(CChofer chofer in ChoferCollection)
             {
-                Console.WriteLine(chofer.ToString());
+                chofer.DarDatos();
             }
             return;
         }
 
         public void MostrarProfesionales()
         {
-            foreach(CProfesional pro in ProfesionalesCollection)
+            Console.WriteLine("Lista de profesionales : ");
+            foreach (CProfesional pro in ProfesionalesCollection)
             {
-                Console.WriteLine(pro.ToString());
+                pro.DarDatos();
             }
             return;
         }

@@ -183,7 +183,7 @@ namespace Emergencias
                     }
                     break;
                 case "3":
-                    //Metodo asignar dotacion
+                    //Metodo asignar dotacion      
                     CDotacion nuevaDotacion = new CDotacion();
                     listaEmpleados.MostrarChoferes();
                     nuevaDotacion.AsignarChofer();
@@ -199,6 +199,7 @@ namespace Emergencias
                     }
                     nuevaDotacion.AsignarVehiculo();
                     listaDotaciones.AgregarDotacion(nuevaDotacion);
+                    nuevaDotacion.MostrarDotacion();
                     MostrarMenu();
                     break;
                 case "4":

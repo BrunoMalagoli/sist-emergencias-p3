@@ -21,19 +21,49 @@ namespace Emergencias
             listaIdProfesional = new ArrayList();
             fecha = DateTime.Now;
         }
+
+
+        public void MostrarDotacion()
+        {
+            Console.WriteLine("\t {0}  {1}  {2}  {3}", this.currDotId, this.fecha, this.numPatente, this.idChofer);
+            Console.Write("Lista de profesionales asignados: ");
+            DarListaProfesionales();
+        }
         public int DarCantidadProfesionales()
         {
             return listaIdProfesional.Count;
+        }
+
+        public void DarListaProfesionales()
+        {
+            foreach(ulong pro in listaIdProfesional)
+            {
+                Console.WriteLine($"\t{pro}");
+            }
         }
         public void AsignarProfesionales()
         {
             string idProf;
             do
             {
-                idProf = Console.ReadLine();
+
+                Console.WriteLine("Asigne un profesional (Ingrese 0 para dejar de cargar): ");
                 Console.Write(">");
-                Console.WriteLine("Asigne un profesional: ");
-            } while (idProf != "0" && listaIdProfesional.Count != 0);
+                idProf = Console.ReadLine();
+                if ( idProf != "0")
+                {
+                    ulong idProfAux;
+                    bool flag = ulong.TryParse(idProf, out idProfAux);
+
+                    while (!flag)
+                    {
+                        Console.WriteLine("Ingrese dato valido");
+                        flag = ulong.TryParse(idProf, out idProfAux);
+                    }
+                    listaIdProfesional.Add(idProfAux);
+                    
+                }
+            } while (idProf != "0");
             return;
         }
         public void AsignarVehiculo()
@@ -41,8 +71,7 @@ namespace Emergencias
             string numP;
             if(listaIdProfesional.Count > 1)
             {
-                Console.WriteLine("El numero de profesionales asignados a su dotacion es mayor a 1 , asigne una de las siguientes ambulancias:");
-                         
+                Console.WriteLine("El numero de profesionales asignados a su dotacion es mayor a 1 , asigne una de las siguientes ambulancias:");         
                 Console.Write(">");
                 numP = Console.ReadLine();
                 return;
@@ -52,6 +81,7 @@ namespace Emergencias
             numP = Console.ReadLine();
             return;
         }
+
         public void AsignarChofer()
         {
             ulong idC;
@@ -67,5 +97,7 @@ namespace Emergencias
             idChofer = idC;
             return;
         }
+
+
     }
 }

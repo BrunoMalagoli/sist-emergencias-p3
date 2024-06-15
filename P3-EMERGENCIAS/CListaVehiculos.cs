@@ -19,15 +19,46 @@ namespace Emergencias
             AmbulanciasCollection = new ArrayList();
             TotalVehiculos = new ArrayList();
         }
+        public bool ExisteAutoEnCollection(string patente)
+        {
+            foreach (CAuto auto in AutosCollection)
+            {
+                if (auto.DarPatente() == patente)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public bool ExisteAmbulanciaEnCollection(string patente)
+        {
+            foreach (CAmbulancia auto in AmbulanciasCollection)
+            {
+                if (auto.DarPatente() == patente)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
         public void CargarAuto(string patente, string modelo, string marca)
         {
-            CAuto AutoInstancia = new CAuto(patente , marca, modelo);
-            AutosCollection.Add(AutoInstancia);
+            if (!ExisteAutoEnCollection(patente))
+            {
+                CAuto AutoInstancia = new CAuto(patente, marca, modelo);
+                AutosCollection.Add(AutoInstancia);
+            }
+            else Console.WriteLine("El Vehiculo con patente {0} ya esta cargado", patente);
         }
-        public void CargarAmbulancia( string patente , string modelo, string marca , string tipo)
+        public void CargarAmbulancia(string patente, string modelo, string marca, string tipo)
         {
-            CAmbulancia AmbulanciaInstancia = new CAmbulancia(patente , modelo, marca , tipo);
-            AmbulanciasCollection.Add(AmbulanciaInstancia);
+            if (!ExisteAmbulanciaEnCollection(patente))
+            {
+                CAmbulancia AmbulanciaInstancia = new CAmbulancia(patente, modelo, marca, tipo);
+                AmbulanciasCollection.Add(AmbulanciaInstancia);
+            }
+            else Console.WriteLine("El Vehiculo con patente {0} ya esta cargado", patente);
         }
         private void MostrarDatosVehiculo(CAuto auto)
         {
@@ -64,21 +95,18 @@ namespace Emergencias
         //METODOS PARA TESTEAR
         internal void MostrarListaAutos()
         {
-            foreach (CAuto Autos in AutosCollection)
+            Console.WriteLine("Lista de autos: ");
+            foreach (CAuto Auto in AutosCollection)
             {
-                Console.WriteLine(Autos.DarPatente());
-                Console.WriteLine(Autos.DarMarca());
-                Console.WriteLine(Autos.DarModelo());
+                Auto.DarDatos();
             }
         }
         internal void MostrarListaAmbulancias()
         {
+            Console.WriteLine("Lista de ambulancias: ");
             foreach (CAmbulancia Ambu in AmbulanciasCollection)
             {
-                Console.WriteLine(Ambu.DarTipoAmbulancia());
-                Console.WriteLine(Ambu.DarPatente());
-                Console.WriteLine(Ambu.DarMarca());
-                Console.WriteLine(Ambu.DarModelo());
+                Ambu.DarDatos();
             }
         }
     }
