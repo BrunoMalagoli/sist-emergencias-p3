@@ -1,27 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "D:\\UTN\\Programacion3\\P3-EMERGENCIAS\\P3-EMERGENCIAS\\P3-EMERGENCIAS.csproj": {}
+    "/home/cristian/Proyectos/prog3/sist-emergencias-p3/P3-EMERGENCIAS/P3-EMERGENCIAS.csproj": {}
   },
   "projects": {
-    "D:\\UTN\\Programacion3\\P3-EMERGENCIAS\\P3-EMERGENCIAS\\P3-EMERGENCIAS.csproj": {
+    "/home/cristian/Proyectos/prog3/sist-emergencias-p3/P3-EMERGENCIAS/P3-EMERGENCIAS.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\UTN\\Programacion3\\P3-EMERGENCIAS\\P3-EMERGENCIAS\\P3-EMERGENCIAS.csproj",
+        "projectUniqueName": "/home/cristian/Proyectos/prog3/sist-emergencias-p3/P3-EMERGENCIAS/P3-EMERGENCIAS.csproj",
         "projectName": "P3-EMERGENCIAS",
-        "projectPath": "D:\\UTN\\Programacion3\\P3-EMERGENCIAS\\P3-EMERGENCIAS\\P3-EMERGENCIAS.csproj",
-        "packagesPath": "C:\\Users\\bmala\\.nuget\\packages\\",
-        "outputPath": "D:\\UTN\\Programacion3\\P3-EMERGENCIAS\\P3-EMERGENCIAS\\obj\\",
+        "projectPath": "/home/cristian/Proyectos/prog3/sist-emergencias-p3/P3-EMERGENCIAS/P3-EMERGENCIAS.csproj",
+        "packagesPath": "/home/cristian/.nuget/packages/",
+        "outputPath": "/home/cristian/Proyectos/prog3/sist-emergencias-p3/P3-EMERGENCIAS/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\bmala\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "/home/cristian/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -34,11 +32,6 @@
           "warnAsError": [
             "NU1605"
           ]
-        },
-        "restoreAuditProperties": {
-          "enableAudit": "true",
-          "auditLevel": "low",
-          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -60,7 +53,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.204/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/8.0.105/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
