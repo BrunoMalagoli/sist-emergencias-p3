@@ -24,15 +24,34 @@ namespace Emergencias
             TotalEmpleados.AddRange(ChoferCollection);
             TotalEmpleados.AddRange(ProfesionalesCollection);
         }
-        public void CargarProfesional(ulong idPro , string ape , string nom, ushort numMat , string cate)
+
+        public bool CargarProfesional(ulong idPro , string ape , string nom, ushort numMat , string cate)
         {
             CProfesional nuevoProfesional = new CProfesional(idPro, ape, nom, cate, numMat);
+            foreach (CProfesional profesional in ProfesionalesCollection)
+            {
+                if (profesional.DarMatricula() == numMat || profesional.DarId() == idPro)
+                {   
+                    Console.WriteLine("La matrícula o el número de Id del profesional ya existe."); // TODO: Este aviso es sólo para nosotros, la responsabilidad de informar es de Vmenu. 
+                    return false;
+                }
+            }
             ProfesionalesCollection.Add(nuevoProfesional);
+            return true;
         }
-        public void CargarChofer(ulong idChof , string ape , string nom , uint reg , string distEm)
+        public bool CargarChofer(ulong idChof , string ape , string nom , uint reg , string distEm)
         {
             CChofer nuevoChofer = new CChofer(idChof, ape , nom , distEm , reg);
+            foreach (CChofer chofer in ChoferCollection)
+            {
+                if (chofer.DarNumRegistro() == reg || chofer.DarId() == idChof)
+                {
+                    Console.WriteLine("El registro o el número de Id del chofer ya existe."); // TODO: Este aviso es sólo para nosotros, la responsabilidad de informar es de Vmenu.
+                    return false;
+                }
+            }
             ChoferCollection.Add(nuevoChofer);
+            return true;
         }
         private void MostrarDatosEmpleado(CChofer empleadoChof)
         {
