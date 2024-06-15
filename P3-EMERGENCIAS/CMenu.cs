@@ -31,7 +31,7 @@ namespace Emergencias
             Console.WriteLine("\t==============================");
             Console.Write("\t>");
             opMenu = Console.ReadLine();
-            if (opMenu != null && opMenu != "0")
+            if (Convert.ToUInt32(opMenu) != 0 && Convert.ToUInt32(opMenu) <= 6)
             {
                 ManejarMenu(opMenu);
             }
@@ -43,6 +43,13 @@ namespace Emergencias
                     Console.Write("(presione Enter para finalizar...)");
                     Console.ReadLine();
                 }
+
+                else if (Convert.ToUInt32(opMenu) > 6)
+                {
+                    Console.WriteLine("El valor ingresado no es valido, ingrese una opcion del menu");
+                    MostrarMenu();
+                }
+
             }
         }
 

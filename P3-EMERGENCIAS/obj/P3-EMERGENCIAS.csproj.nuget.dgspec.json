@@ -1,25 +1,32 @@
 {
   "format": 1,
   "restore": {
-    "/home/cristian/Proyectos/prog3/sist-emergencias-p3/P3-EMERGENCIAS/P3-EMERGENCIAS.csproj": {}
+    "N:\\PROGRAMACION UTN\\TERCER CUATRIMESTRE\\PROGRAMACION III\\sist-emergencias-p3\\P3-EMERGENCIAS\\P3-EMERGENCIAS.csproj": {}
   },
   "projects": {
-    "/home/cristian/Proyectos/prog3/sist-emergencias-p3/P3-EMERGENCIAS/P3-EMERGENCIAS.csproj": {
+    "N:\\PROGRAMACION UTN\\TERCER CUATRIMESTRE\\PROGRAMACION III\\sist-emergencias-p3\\P3-EMERGENCIAS\\P3-EMERGENCIAS.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/cristian/Proyectos/prog3/sist-emergencias-p3/P3-EMERGENCIAS/P3-EMERGENCIAS.csproj",
+        "projectUniqueName": "N:\\PROGRAMACION UTN\\TERCER CUATRIMESTRE\\PROGRAMACION III\\sist-emergencias-p3\\P3-EMERGENCIAS\\P3-EMERGENCIAS.csproj",
         "projectName": "P3-EMERGENCIAS",
-        "projectPath": "/home/cristian/Proyectos/prog3/sist-emergencias-p3/P3-EMERGENCIAS/P3-EMERGENCIAS.csproj",
-        "packagesPath": "/home/cristian/.nuget/packages/",
-        "outputPath": "/home/cristian/Proyectos/prog3/sist-emergencias-p3/P3-EMERGENCIAS/obj/",
+        "projectPath": "N:\\PROGRAMACION UTN\\TERCER CUATRIMESTRE\\PROGRAMACION III\\sist-emergencias-p3\\P3-EMERGENCIAS\\P3-EMERGENCIAS.csproj",
+        "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
+        "outputPath": "N:\\PROGRAMACION UTN\\TERCER CUATRIMESTRE\\PROGRAMACION III\\sist-emergencias-p3\\P3-EMERGENCIAS\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "/home/cristian/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\user\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -32,6 +39,11 @@
           "warnAsError": [
             "NU1605"
           ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -53,7 +65,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/8.0.105/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.300/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

@@ -56,6 +56,7 @@ namespace Emergencias
                 {
                     MostrarDatosVehiculo((CAmbulancia)vehiculo);
                 }
+
             }
             TotalVehiculos.Clear();
         }
