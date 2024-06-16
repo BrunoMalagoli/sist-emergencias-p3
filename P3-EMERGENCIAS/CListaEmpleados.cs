@@ -24,29 +24,58 @@ namespace Emergencias
             TotalEmpleados.AddRange(ChoferCollection);
             TotalEmpleados.AddRange(ProfesionalesCollection);
         }
-        public void CargarProfesional(ulong idPro , string ape , string nom, ushort numMat , string cate)
+
+        public bool CargarProfesional(ulong idPro , string ape , string nom, ushort numMat , string cate)
         {
             CProfesional nuevoProfesional = new CProfesional(idPro, ape, nom, cate, numMat);
+            foreach (CProfesional profesional in ProfesionalesCollection)
+            {
+                if (profesional.DarMatricula() == numMat || profesional.DarId() == idPro)
+                {   
+                    Console.WriteLine("La matrícula o el número de Id del profesional ya existe."); // TODO: Este aviso es sólo para nosotros, la responsabilidad de informar es de Vmenu. 
+                    return false;
+                }
+            }
             ProfesionalesCollection.Add(nuevoProfesional);
+            return true;
         }
-        public void CargarChofer(ulong idChof , string ape , string nom , uint reg , string distEm)
+        public bool CargarChofer(ulong idChof , string ape , string nom , uint reg , string distEm)
         {
             CChofer nuevoChofer = new CChofer(idChof, ape , nom , distEm , reg);
+            foreach (CChofer chofer in ChoferCollection)
+            {
+                if (chofer.DarNumRegistro() == reg || chofer.DarId() == idChof)
+                {
+                    Console.WriteLine("El registro o el número de Id del chofer ya existe."); // TODO: Este aviso es sólo para nosotros, la responsabilidad de informar es de Vmenu.
+                    return false;
+                }
+            }
             ChoferCollection.Add(nuevoChofer);
+            return true;
         }
         private void MostrarDatosEmpleado(CChofer empleadoChof)
         {
-            Console.WriteLine("{0}    {1}    {2}    {3}    {4}" , empleadoChof.DarId() , empleadoChof.DarApellido() , empleadoChof.DarNombre(), empleadoChof.DarNumRegistro(), empleadoChof.DarDistritoEmision());
+            Console.WriteLine("{0,-10}{1,-10}{2,-10}{3,-10}{4,-10}",
+                empleadoChof.DarId().ToString(), 
+                empleadoChof.DarApellido(), 
+                empleadoChof.DarNombre(), 
+                empleadoChof.DarNumRegistro().ToString(),
+                empleadoChof.DarDistritoEmision());
         }
         private void MostrarDatosEmpleado(CProfesional empleadoPro)
         {
-            Console.WriteLine("{0}    {1}    {2}    {3}    {4}", empleadoPro.DarId(), empleadoPro.DarApellido(), empleadoPro.DarNombre(), empleadoPro.DarMatricula(), empleadoPro.DarCategoria());
+            Console.WriteLine("{0,-10}{1,-10}{2,-10}{3,-10}{4,-10}", 
+                empleadoPro.DarId().ToString(), 
+                empleadoPro.DarApellido(), 
+                empleadoPro.DarNombre(), 
+                empleadoPro.DarMatricula().ToString(), 
+                empleadoPro.DarCategoria());
         }
 
         public void MostrarListaEmpleados()
         {
             JuntarListas();
-            Console.WriteLine("ID    APELLIDO    NOMBRE    MAT/REG    CAT/DIST");
+            Console.WriteLine("{0,-10}{1,-10}{2,-10}{3,-10}{4,-10}","ID", "APELLIDO", "NOMBRE", "MAT/REG", "CAT/DIST");
             foreach (object empleado in TotalEmpleados)
             {
                 if (empleado is CChofer)
@@ -63,20 +92,18 @@ namespace Emergencias
         }
         public void MostrarChoferes()
         {
-            Console.WriteLine("Lista de choferes : ");
             foreach(CChofer chofer in ChoferCollection)
             {
-                chofer.DarDatos();
+                Console.WriteLine(chofer.ToString());
             }
             return;
         }
 
         public void MostrarProfesionales()
         {
-            Console.WriteLine("Lista de profesionales : ");
-            foreach (CProfesional pro in ProfesionalesCollection)
+            foreach(CProfesional pro in ProfesionalesCollection)
             {
-                pro.DarDatos();
+                Console.WriteLine(pro.ToString());
             }
             return;
         }
@@ -88,18 +115,29 @@ namespace Emergencias
                 if(empleado is CChofer)
                 {
                     if(idEmp == ((CChofer)empleado).DarId()){
-                        Console.WriteLine("{0}   {1}   {2}   {3}   {4}", ((CChofer)empleado).DarId(), ((CChofer)empleado).DarNombre(), ((CChofer)empleado).DarApellido(), ((CChofer)empleado).DarNumRegistro(), ((CChofer)empleado).DarDistritoEmision());
+                        Console.WriteLine("{0,-10}{1,-10}{2,-10}{3,-10}{4,-10}",
+                            ((CChofer)empleado).DarId().ToString(), 
+                            ((CChofer)empleado).DarNombre(), 
+                            ((CChofer)empleado).DarApellido(), 
+                            ((CChofer)empleado).DarNumRegistro().ToString(), 
+                            ((CChofer)empleado).DarDistritoEmision());
                         return;
                     }
                 }else if(empleado is CProfesional)
                 {
                     if (idEmp == ((CProfesional)empleado).DarId())
                     {
-                        Console.WriteLine("{0}   {1}   {2}   {3}   {4}", ((CProfesional)empleado).DarId(), ((CProfesional)empleado).DarNombre(), ((CProfesional)empleado).DarApellido(), ((CProfesional)empleado).DarMatricula(), ((CProfesional)empleado).DarCategoria());
+                        Console.WriteLine("{0,-10}{1,-10}{2,-10}{3,-10}{4,-10}",
+                            ((CProfesional)empleado).DarId().ToString(), 
+                            ((CProfesional)empleado).DarNombre(), 
+                            ((CProfesional)empleado).DarApellido(), 
+                            ((CProfesional)empleado).DarMatricula().ToString(), 
+                            ((CProfesional)empleado).DarCategoria());   
                         return;
                     }
                 }
             }
+            TotalEmpleados.Clear();
             Console.WriteLine("No se encontro resultado");
         }
     }
