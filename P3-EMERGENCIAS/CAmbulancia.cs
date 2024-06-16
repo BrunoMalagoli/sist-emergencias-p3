@@ -16,7 +16,10 @@ namespace Emergencias
             this.marca = mar;
             tipoAmbulancia = tipoAm;
         }
-
+        public void DarDatos()
+        {
+            Console.WriteLine("\t {0}  {1}  {2}  {3}", this.patente, this.marca, this.modelo, DarTipoAmbulancia());
+        }
         public string DarTipoAmbulancia()
         {
             return this.tipoAmbulancia;

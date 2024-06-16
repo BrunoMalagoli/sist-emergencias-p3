@@ -23,6 +23,10 @@ namespace Emergencias
             return this.matricula;
         }
 
+        public void DarDatos()
+        {
+            Console.WriteLine("\t {0}  {1}  {2}  {3}  {4}" , this.id , this.apellido , this.nombre , this.categoria , this.matricula);
+        }
         public string DarCategoria()
         {
             return this.categoria;

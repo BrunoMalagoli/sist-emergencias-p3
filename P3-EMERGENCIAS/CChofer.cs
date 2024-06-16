@@ -21,7 +21,10 @@ namespace Emergencias
             this.numRegistro = reg;
             this.distEmision = dist;
         }
-
+        public void DarDatos()
+        {
+            Console.WriteLine("\t {0}  {1}  {2}  {3}  {4}", this.id, this.apellido, this.nombre, this.numRegistro, this.distEmision);
+        }
         public string DarDistritoEmision()
         {
             return this.distEmision;
