@@ -45,8 +45,6 @@ namespace Emergencias
 
         private void OrdenarListas()
         {
-            // TotalVehiculos.AddRange(AmbulanciasCollection);
-            // TotalVehiculos.AddRange(AutosCollection);
             /*
             Para utilizar este metodo primero hay que llamar al metodo: JuntarListas().
             */
@@ -57,9 +55,6 @@ namespace Emergencias
             {
                 for (int j = 0; j < n - i - 1; j++)
                 {
-                    
-                    // string patente1 = TotalVehiculos[j].DarPatente();
-                    // string patente2 = TotalVehiculos[j+1].DarPatente();
                     if (string.Compare( (TotalVehiculos[j] as CVehiculo).DarPatente(),(TotalVehiculos[j+1] as CVehiculo).DarPatente() , StringComparison.Ordinal) > 0)
                     {
                         // Intercambiar list[j] y list[j + 1]
