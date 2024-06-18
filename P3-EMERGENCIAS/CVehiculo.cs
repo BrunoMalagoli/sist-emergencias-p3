@@ -11,6 +11,8 @@ namespace Emergencias
         internal string? patente;
         internal string? marca;
         internal string? modelo;
+
+
         public string DarPatente()
         {
             if (patente == null)

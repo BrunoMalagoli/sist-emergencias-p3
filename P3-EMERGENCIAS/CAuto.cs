@@ -13,6 +13,10 @@ namespace Emergencias
             this.modelo = mod;
             this.marca = mar;
         }
+        public void DarDatos()
+        {
+            Console.WriteLine("\t {0}  {1}  {2}", this.patente, this.marca, this.modelo);
+        }
 
     }
 }
