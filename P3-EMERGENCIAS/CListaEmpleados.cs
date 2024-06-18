@@ -32,7 +32,9 @@ namespace Emergencias
             {
                 if (profesional.DarMatricula() == numMat || profesional.DarId() == idPro)
                 {   
-                    Console.WriteLine("La matrícula o el número de Id del profesional ya existe."); // TODO: Este aviso es sólo para nosotros, la responsabilidad de informar es de Vmenu. 
+                    Console.WriteLine("\n\tLa matrícula o el número de Id del profesional ya existe."); // TODO: Este aviso es sólo para nosotros, la responsabilidad de informar es de Vmenu. 
+                    Console.Write("Presione Enter para continuar...");
+                    Console.ReadLine();
                     return false;
                 }
             }
@@ -46,7 +48,9 @@ namespace Emergencias
             {
                 if (chofer.DarNumRegistro() == reg || chofer.DarId() == idChof)
                 {
-                    Console.WriteLine("El registro o el número de Id del chofer ya existe."); // TODO: Este aviso es sólo para nosotros, la responsabilidad de informar es de Vmenu.
+                    Console.WriteLine("\n\tEl registro o el número de Id del chofer ya existe."); // TODO: Este aviso es sólo para nosotros, la responsabilidad de informar es de Vmenu.
+                    Console.Write("Presione Enter para continuar...");
+                    Console.ReadLine();
                     return false;
                 }
             }
@@ -92,22 +96,28 @@ namespace Emergencias
         }
         public void MostrarChoferes()
         {
-            foreach(CChofer chofer in ChoferCollection)
+            foreach(object chofer in ChoferCollection)
             {
-                Console.WriteLine(chofer.ToString());
+                if (chofer is CChofer)
+                {
+                    MostrarDatosEmpleado((CChofer)chofer);
+                }
             }
             return;
         }
 
         public void MostrarProfesionales()
         {
-            foreach(CProfesional pro in ProfesionalesCollection)
+            foreach(object profesional in ProfesionalesCollection)
             {
-                Console.WriteLine(pro.ToString());
+                if (profesional is CProfesional)
+                {
+                    MostrarDatosEmpleado((CProfesional)profesional);
+                }
             }
             return;
         }
-        public void BuscarEmpleadoPorId(ulong idEmp)
+        public void BuscarEmpleadoPorId(ulong idEmp) // TODO : OPTIMIZAR BUSQUEDA.
         {
             JuntarListas();
             foreach(object empleado in TotalEmpleados)
@@ -121,6 +131,7 @@ namespace Emergencias
                             ((CChofer)empleado).DarApellido(), 
                             ((CChofer)empleado).DarNumRegistro().ToString(), 
                             ((CChofer)empleado).DarDistritoEmision());
+                        TotalEmpleados.Clear();
                         return;
                     }
                 }else if(empleado is CProfesional)
@@ -132,7 +143,8 @@ namespace Emergencias
                             ((CProfesional)empleado).DarNombre(), 
                             ((CProfesional)empleado).DarApellido(), 
                             ((CProfesional)empleado).DarMatricula().ToString(), 
-                            ((CProfesional)empleado).DarCategoria());   
+                            ((CProfesional)empleado).DarCategoria()); 
+                        TotalEmpleados.Clear();  
                         return;
                     }
                 }
