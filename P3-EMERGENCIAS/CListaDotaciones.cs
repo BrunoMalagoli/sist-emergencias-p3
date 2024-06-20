@@ -23,9 +23,68 @@ namespace Emergencias
             }
         }
 
-        public void AgregarDotacion(CDotacion dotacionRef)
+        public bool AgregarDotacion(CDotacion dotacionRef)
         {
-            ColeccionDotaciones.Add(dotacionRef);
+            
+            if (!ExisteVehiculoEnDotacion(dotacionRef.DarPatenteVehiculo()) && !ExisteChoferEnDotacion(dotacionRef.DarChoferId()) && !ExisteProfesionalesEnDotaciones(dotacionRef.DarListaProfesionales())) {
+                ColeccionDotaciones.Add(dotacionRef);
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+               
+        }
+        public bool ExisteProfesionalesEnDotaciones(ArrayList profIdList)
+        {
+            foreach (CDotacion dota in ColeccionDotaciones)
+            {
+                foreach (ulong id in dota.DarListaProfesionales())
+                {
+                    if (profIdList.Contains(id))
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+        public bool ExisteProfesionalesEnDotaciones(ulong profId)
+        {
+            foreach (CDotacion dota in ColeccionDotaciones)
+            {
+                foreach (ulong id in dota.DarListaProfesionales())
+                {
+                    if (profId == id)
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+        public bool ExisteChoferEnDotacion(ulong choferID)
+        {
+            foreach (CDotacion dota in ColeccionDotaciones)
+            {
+                if(dota.DarChoferId() == choferID)
+                {
+                    return true;    
+                }
+            }
+            return false;
+        }
+        public static bool ExisteVehiculoEnDotacion(string numpat)
+        {
+            foreach(CDotacion dota in ColeccionDotaciones)
+            {
+                if(dota.DarPatenteVehiculo() == numpat)
+                {
+                    return true;
+                }
+            }
+            return false;
         }
 
     }

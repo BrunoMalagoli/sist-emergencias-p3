@@ -19,7 +19,7 @@ namespace Emergencias
             AmbulanciasCollection = new ArrayList();
             TotalVehiculos = new ArrayList();
         }
-        public bool ExisteAutoEnCollection(string patente)
+        public static bool ExisteAutoEnCollection(string patente)
         {
             foreach (CAuto auto in AutosCollection)
             {
@@ -31,34 +31,37 @@ namespace Emergencias
             return false;
         }
 
-        public bool ExisteAmbulanciaEnCollection(string patente)
+
+        public static bool ExisteAmbulanciaEnCollection(string patente)
         {
-            foreach (CAmbulancia auto in AmbulanciasCollection)
+            foreach (CAmbulancia ambu in AmbulanciasCollection)
             {
-                if (auto.DarPatente() == patente)
+                if (ambu.DarPatente() == patente)
                 {
                     return true;
                 }
             }
             return false;
         }
-        public void CargarAuto(string patente, string modelo, string marca)
+        public bool CargarAuto(string patente, string modelo, string marca)
         {
             if (!ExisteAutoEnCollection(patente))
             {
                 CAuto AutoInstancia = new CAuto(patente, marca, modelo);
                 AutosCollection.Add(AutoInstancia);
+                return true;
             }
-            else Console.WriteLine("El Vehiculo con patente {0} ya esta cargado", patente);
+            return false;
         }
-        public void CargarAmbulancia(string patente, string modelo, string marca, string tipo)
+        public bool CargarAmbulancia(string patente, string modelo, string marca, string tipo)
         {
             if (!ExisteAmbulanciaEnCollection(patente))
             {
                 CAmbulancia AmbulanciaInstancia = new CAmbulancia(patente, modelo, marca, tipo);
                 AmbulanciasCollection.Add(AmbulanciaInstancia);
+                return true;
             }
-            else Console.WriteLine("El Vehiculo con patente {0} ya esta cargado", patente);
+            return false;
         }
         private void MostrarDatosVehiculo(CAuto auto)
         {
@@ -70,12 +73,17 @@ namespace Emergencias
         }
         private void JuntarListas()
         {
-            TotalVehiculos.AddRange(AmbulanciasCollection);
-            TotalVehiculos.AddRange(AutosCollection);
+            if(AmbulanciasCollection.Count > 0 && AutosCollection.Count > 0)
+            {
+                TotalVehiculos.AddRange(AmbulanciasCollection);
+                TotalVehiculos.AddRange(AutosCollection);
+            }
+    
         }
 
         private void OrdenarListas()
         {
+
             /*
             Para utilizar este metodo primero hay que llamar al metodo: JuntarListas().
             */
@@ -86,7 +94,7 @@ namespace Emergencias
             {
                 for (int j = 0; j < n - i - 1; j++)
                 {
-                    if (string.Compare( (TotalVehiculos[j] as CVehiculo).DarPatente(),(TotalVehiculos[j+1] as CVehiculo).DarPatente() , StringComparison.Ordinal) > 0)
+                    if (string.Compare((TotalVehiculos[j] as CVehiculo).DarPatente(), (TotalVehiculos[j + 1] as CVehiculo).DarPatente(), StringComparison.Ordinal) > 0)
                     {
                         // Intercambiar list[j] y list[j + 1]
                         object temp = TotalVehiculos[j];
@@ -102,19 +110,27 @@ namespace Emergencias
             JuntarListas();
             OrdenarListas();
 
-            Console.WriteLine("{0,-12}{1,-12}{2,-12}{3,-12}", "PATENTE", "MARCA", "MODELO", "TIPO");
-
-            foreach (object vehiculo in TotalVehiculos)
+           
+            if (TotalVehiculos.Count > 0)
             {
-                if (vehiculo is CAuto)
+                Console.WriteLine("{0,-12}{1,-12}{2,-12}{3,-12}", "PATENTE", "MARCA", "MODELO", "TIPO");
+                foreach (object vehiculo in TotalVehiculos)
                 {
-                    MostrarDatosVehiculo((CAuto)vehiculo);
-                }
-                else if (vehiculo is CAmbulancia)
-                {
-                    MostrarDatosVehiculo((CAmbulancia)vehiculo);
+                    if (vehiculo is CAuto)
+                    {
+                        MostrarDatosVehiculo((CAuto)vehiculo);
+                    }
+                    else if (vehiculo is CAmbulancia)
+                    {
+                        MostrarDatosVehiculo((CAmbulancia)vehiculo);
+                    }
                 }
             }
+            else
+            {
+                Console.WriteLine("No hay vehiculos cargados en la lista");
+            }
+            
             TotalVehiculos.Clear();
         }
 

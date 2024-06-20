@@ -27,26 +27,28 @@ namespace Emergencias
 
         public bool CargarProfesional(ulong idPro , string ape , string nom, ushort numMat , string cate)
         {
+            JuntarListas();
             CProfesional nuevoProfesional = new CProfesional(idPro, ape, nom, cate, numMat);
-            foreach (CProfesional profesional in ProfesionalesCollection)
+            foreach (CEmpleado empleado in TotalEmpleados)
             {
-                if (profesional.DarMatricula() == numMat || profesional.DarId() == idPro)
+                if ( empleado.DarId() == idPro)
                 {   
-                    Console.WriteLine("\n\tLa matrícula o el número de Id del profesional ya existe."); // TODO: Este aviso es sólo para nosotros, la responsabilidad de informar es de Vmenu. 
+                    //NO SE AGREGA EL PROFESIONAL PORQUE YA ESTA EN LA LISTA
                     Console.Write("Presione Enter para continuar...");
                     Console.ReadLine();
                     return false;
                 }
             }
             ProfesionalesCollection.Add(nuevoProfesional);
+            TotalEmpleados.Clear();
             return true;
         }
         public bool CargarChofer(ulong idChof , string ape , string nom , uint reg , string distEm)
         {
             CChofer nuevoChofer = new CChofer(idChof, ape , nom , distEm , reg);
-            foreach (CChofer chofer in ChoferCollection)
+            foreach (CEmpleado empleado in TotalEmpleados)
             {
-                if (chofer.DarNumRegistro() == reg || chofer.DarId() == idChof)
+                if (empleado.DarId() == idChof)
                 {
                     Console.WriteLine("\n\tEl registro o el número de Id del chofer ya existe."); // TODO: Este aviso es sólo para nosotros, la responsabilidad de informar es de Vmenu.
                     Console.Write("Presione Enter para continuar...");
@@ -55,6 +57,7 @@ namespace Emergencias
                 }
             }
             ChoferCollection.Add(nuevoChofer);
+            TotalEmpleados.Clear();
             return true;
         }
         private void MostrarDatosEmpleado(CChofer empleadoChof)
@@ -76,6 +79,32 @@ namespace Emergencias
                 empleadoPro.DarCategoria());
         }
 
+        public void EliminarChofer(ulong idChof )
+        {
+            foreach(CChofer chofer in ChoferCollection)
+            {
+                if(chofer.DarId() == idChof)
+                {
+                    ChoferCollection.Remove(chofer);
+                    Console.WriteLine("Se elimino el chofer {0}" , idChof);
+                    return;
+                }
+            }
+            Console.WriteLine("No se encontro el chofer para eliminar");
+        }
+        public void EliminarProfesional(ulong idPro) 
+        {
+            foreach (CProfesional pro in ProfesionalesCollection)
+            {
+                if (pro.DarId() == idPro)
+                {
+                    ChoferCollection.Remove(pro);
+                    Console.WriteLine("Se elimino el profesional {0}", idPro);
+                    return;
+                }
+            }
+            Console.WriteLine("No se encontro el profesional para eliminar");
+        }
         public void MostrarListaEmpleados()
         {
             JuntarListas();
