@@ -27,19 +27,23 @@ namespace Emergencias
         {
             Console.WriteLine("\t {0}  {1}  {2}  {3}", this.currDotId, this.fecha, this.numPatente, this.idChofer);
             Console.Write("Lista de profesionales asignados: ");
-            DarListaProfesionales();
+            MostrarListaProfesionales();
         }
         public int DarCantidadProfesionales()
         {
             return listaIdProfesional.Count;
         }
 
-        public void DarListaProfesionales()
+        public void MostrarListaProfesionales()
         {
-            foreach(ulong pro in listaIdProfesional)
+            foreach (ulong pro in listaIdProfesional)
             {
                 Console.WriteLine($"\t{pro}");
             }
+        }
+        public ArrayList DarListaProfesionales()
+        {
+            return listaIdProfesional;
         }
         public void AsignarProfesionales()
         {
@@ -66,20 +70,43 @@ namespace Emergencias
             } while (idProf != "0");
             return;
         }
-        public void AsignarVehiculo()
+        public bool AsignarVehiculo()
         {
             string numP;
-            if(listaIdProfesional.Count > 1)
+            if (listaIdProfesional.Count > 1)
             {
-                Console.WriteLine("El numero de profesionales asignados a su dotacion es mayor a 1 , asigne una de las siguientes ambulancias:");         
+                Console.WriteLine("El numero de profesionales asignados a su dotacion es mayor a 1 , asigne una de las siguientes ambulancias:");
                 Console.Write(">");
                 numP = Console.ReadLine();
-                return;
+                if (CListaVehiculos.ExisteAmbulanciaEnCollection(numP))
+                {
+                    numPatente = numP;
+                    return true;
+                }
+
+                return false;
             }
-            Console.WriteLine("Asigne un auto a su dotacion: ");
-            Console.Write(">");
-            numP = Console.ReadLine();
-            return;
+            else
+            {
+                Console.WriteLine("Asigne un auto a su dotacion: ");
+                Console.Write(">");
+                numP = Console.ReadLine();
+                if(CListaVehiculos.ExisteAutoEnCollection(numP))
+                {
+                    numPatente = numP;
+                    return true;
+                }
+                return false;
+            }            
+        }
+
+        public string DarPatenteVehiculo()
+        {
+            return numPatente;
+        }
+        public ulong DarChoferId()
+        {
+            return idChofer;
         }
 
         public void AsignarChofer()

@@ -16,6 +16,7 @@ namespace Emergencias
         {
             listaVehiculos = new CListaVehiculos();
             listaEmpleados = new CListaEmpleados();
+            listaDotaciones = new CListaDotaciones();
         }
 
         public void MostrarMenu()
@@ -28,6 +29,7 @@ namespace Emergencias
             Console.WriteLine("\t4.Buscar empleado por ID");
             Console.WriteLine("\t5.Mostrar todos los empleados");
             Console.WriteLine("\t6.Mostrar todos los vehiculos");
+            Console.WriteLine("\t7.Eliminar empleado por id");
             Console.WriteLine("\t0.Salir");
             Console.WriteLine("\t===============================");
             Console.Write("\t>");
@@ -131,7 +133,16 @@ namespace Emergencias
                                         break;
                                 }
                             } while (categoria == null);
-                            listaEmpleados.CargarProfesional(codIdentPersonal, apellido, nombre, numMatricula, categoria);
+                            if(listaEmpleados.CargarProfesional(codIdentPersonal, apellido, nombre, numMatricula, categoria))
+                            {
+                                Console.WriteLine("Profesional agregado correctamente");
+                                
+                            }
+                            else
+                            {
+                                Console.WriteLine("El Profesional ya existe en la lista");
+                                
+                            }
                             break;
                             
                     }
@@ -161,7 +172,17 @@ namespace Emergencias
                             Console.Write("Modelo: ");
                             modelo = Console.ReadLine();
                         } while (patente == null || marca == null || modelo == null);
-                        listaVehiculos.CargarAuto(patente, modelo, marca);
+                        
+                        if (listaVehiculos.CargarAuto(patente, modelo, marca))
+                        {
+                            Console.WriteLine("Auto cargado correctamente");
+                        }
+                        else
+                        {
+                            Console.WriteLine("El auto ya existe en el programa");
+                            Console.WriteLine("Pulse enter para continuar...");
+                            Console.Read();
+                        }
                     }
                     else if (opVehiculo == "2")
                     {
@@ -174,7 +195,24 @@ namespace Emergencias
                         do
                         {
                             Console.Write("Tipo de ambulancia : ");
-                            tipo = Console.ReadLine();  
+                            Console.WriteLine("1.EMG  2.UTIM  3.UCM");
+                            tipo = Console.ReadLine();
+                            switch (tipo)
+                            {
+                                case "1":
+                                    tipo = "EMG";
+                                    break;
+                                case "2":
+                                    tipo = "UTIM";
+                                    break;
+                                case "3":
+                                    tipo = "UCM";
+                                    break;
+                                default: 
+                                    Console.WriteLine("Tipo de ambulancia invalido , intentelo nuevamente");
+                                    MostrarMenu();
+                                    break;
+                            }  
                             Console.Write("Patente : ");
                             patente = Console.ReadLine();
                             Console.Write("Marca : ");
@@ -182,7 +220,16 @@ namespace Emergencias
                             Console.Write("Modelo: ");
                             modelo = Console.ReadLine();
                         } while (patente == null || marca == null || modelo == null || tipo == null);
-                        listaVehiculos.CargarAmbulancia(patente, modelo, marca, tipo);
+                        if(listaVehiculos.CargarAmbulancia(patente, modelo, marca, tipo))
+                        {
+                            Console.WriteLine("Ambulancia cargada correctamente");
+                        }
+                        else
+                        {
+                            Console.WriteLine("La ambulancia ya existe en el programa");
+                            Console.WriteLine("Pulse enter para continuar...");
+                            Console.Read();
+                        }
                     }
                     break;
                 case "3":
@@ -201,8 +248,15 @@ namespace Emergencias
                         listaVehiculos.MostrarListaAutos();
                     }
                     nuevaDotacion.AsignarVehiculo();
-                    listaDotaciones.AgregarDotacion(nuevaDotacion);
-                    nuevaDotacion.MostrarDotacion();
+                    if (listaDotaciones.AgregarDotacion(nuevaDotacion))
+                    {
+                        Console.WriteLine("Dotacion agregada con exito");
+                        nuevaDotacion.MostrarDotacion();
+                    }
+                    else
+                    {
+                        Console.WriteLine("La dotacion tiene elementos asignados en otra ya existente, cambie los datos y vuelva a intentarlo");
+                    }
                     break;
                 case "4":
                     Console.Write("Ingrese Id para buscar empleado: ");
@@ -225,6 +279,47 @@ namespace Emergencias
                     listaVehiculos.MostrarTodosVehiculos();
                     Console.Write("\n\tPresione Enter para continuar...");
                     Console.ReadLine();
+                    break;
+                case "7":
+                    string selMen;
+                    ulong idEmp;
+                    Console.WriteLine("Quiere eliminar un chofer o un profesional?");
+                    Console.WriteLine("1.Chofer");
+                    Console.WriteLine("2.Profesional");
+                    Console.Write(">");
+                    selMen = Console.ReadLine();
+                    switch (selMen)
+                    {
+                        case "1":
+                            while (!ulong.TryParse(Console.ReadLine(), out idEmp)){
+                                Console.WriteLine("Ingrese solamente valores numericos en el id");
+                            }
+                            if (!listaDotaciones.ExisteChoferEnDotacion(idEmp))
+                            {
+                                listaEmpleados.EliminarChofer(idEmp);
+                            }
+                            else
+                            {
+                                Console.WriteLine("El chofer esta asignado a una dotacion");
+                            }
+                            
+                            break;
+                        case "2":
+                            while (!ulong.TryParse(Console.ReadLine(), out idEmp)){
+                                Console.WriteLine("Ingrese solamente valores numericos en el id");
+                            }
+                            if (!listaDotaciones.ExisteProfesionalesEnDotaciones(idEmp))
+                            {
+                                listaEmpleados.EliminarProfesional(idEmp);
+                            }
+                            else
+                            {
+                                Console.WriteLine("El chofer esta asignado a una dotacion");
+                            }
+                            break;
+                        default:
+                            break;
+                    }
                     break;
                 default:
                     Console.WriteLine("El valor ingresado no es valido, ingrese una opcion del menu.");
