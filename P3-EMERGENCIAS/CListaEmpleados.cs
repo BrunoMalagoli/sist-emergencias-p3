@@ -105,23 +105,32 @@ namespace Emergencias
             }
             Console.WriteLine("No se encontro el profesional para eliminar");
         }
-        public void MostrarListaEmpleados()
+        public void MostrarListaEmpleados() // corregido cuando no hay empleados en la lista
         {
             JuntarListas();
-            Console.WriteLine("{0,-10}{1,-10}{2,-10}{3,-10}{4,-10}","ID", "APELLIDO", "NOMBRE", "MAT/REG", "CAT/DIST");
-            foreach (object empleado in TotalEmpleados)
+            OrdenarListaEmpleados(TotalEmpleados);
+
+            if (TotalEmpleados.Count != 0)
             {
-                if (empleado is CChofer)
+                Console.WriteLine("{0,-10}{1,-10}{2,-10}{3,-10}{4,-10}", "ID", "APELLIDO", "NOMBRE", "MAT/REG", "CAT/DIST");
+                foreach (object empleado in TotalEmpleados)
                 {
-                    MostrarDatosEmpleado((CChofer)empleado);
+                    if (empleado is CChofer)
+                    {
+                        MostrarDatosEmpleado((CChofer)empleado);
+                    }
+                    else
+                    {
+                        MostrarDatosEmpleado((CProfesional)empleado);
+                    }
+
                 }
-                else
-                {
-                    MostrarDatosEmpleado((CProfesional)empleado);
-                }
-               
+                TotalEmpleados.Clear();
             }
-            TotalEmpleados.Clear();
+            else {
+                Console.WriteLine("\t{0,-10}{1,-10}{2,-10}{3,-10}{4,-10}", "ID", "APELLIDO", "NOMBRE", "MAT/REG", "CAT/DIST");
+                Console.WriteLine("\tNo hay empleados cargados en la lista"); }
+
         }
         public void MostrarChoferes()
         {
@@ -146,7 +155,7 @@ namespace Emergencias
             }
             return;
         }
-        public void BuscarEmpleadoPorId(ulong idEmp) // TODO : OPTIMIZAR BUSQUEDA.
+        public bool BuscarEmpleadoPorId(ulong idEmp) // TODO : OPTIMIZAR BUSQUEDA.
         {
             JuntarListas();
             foreach(object empleado in TotalEmpleados)
@@ -154,32 +163,77 @@ namespace Emergencias
                 if(empleado is CChofer)
                 {
                     if(idEmp == ((CChofer)empleado).DarId()){
-                        Console.WriteLine("{0,-10}{1,-10}{2,-10}{3,-10}{4,-10}",
+                        Console.WriteLine("Chofer: {0,-10}{1,-10}{2,-10}{3,-10}{4,-10}",
                             ((CChofer)empleado).DarId().ToString(), 
                             ((CChofer)empleado).DarNombre(), 
                             ((CChofer)empleado).DarApellido(), 
                             ((CChofer)empleado).DarNumRegistro().ToString(), 
                             ((CChofer)empleado).DarDistritoEmision());
-                        TotalEmpleados.Clear();
-                        return;
+                            TotalEmpleados.Clear();
+                        return true;
                     }
                 }else if(empleado is CProfesional)
                 {
                     if (idEmp == ((CProfesional)empleado).DarId())
                     {
-                        Console.WriteLine("{0,-10}{1,-10}{2,-10}{3,-10}{4,-10}",
+                        Console.WriteLine("Profesional: {0,-10}{1,-10}{2,-10}{3,-10}{4,-10}",
                             ((CProfesional)empleado).DarId().ToString(), 
                             ((CProfesional)empleado).DarNombre(), 
                             ((CProfesional)empleado).DarApellido(), 
                             ((CProfesional)empleado).DarMatricula().ToString(), 
                             ((CProfesional)empleado).DarCategoria()); 
                         TotalEmpleados.Clear();  
-                        return;
+                        return true;
                     }
                 }
             }
             TotalEmpleados.Clear();
             Console.WriteLine("No se encontro resultado");
+            return false;
+        }
+
+        public void OrdenarListaEmpleados(ArrayList listaEmp)
+        {
+
+            /*
+            Para utilizar este metodo primero hay que llamar al metodo: JuntarListas().
+            */
+            int n = TotalEmpleados.Count;
+
+
+            for (int i = 0; i < n - 1; i++)
+            {
+                for (int j = 0; j < n - i - 1; j++)
+                {
+                    if (string.Compare((TotalEmpleados[j] as CEmpleado).DarApellido(), (TotalEmpleados[j + 1] as CEmpleado).DarApellido(), StringComparison.Ordinal) > 0)         
+                    {
+                        // Intercambiar list[j] y list[j + 1]
+                        object temp = TotalEmpleados[j];
+                        TotalEmpleados[j] = TotalEmpleados[j + 1];
+                        TotalEmpleados[j + 1] = temp;
+                    }
+                    else if (string.Compare((TotalEmpleados[j] as CEmpleado).DarApellido(), (TotalEmpleados[j + 1] as CEmpleado).DarApellido(), StringComparison.Ordinal) == 0)
+                    {
+                        if (string.Compare((TotalEmpleados[j] as CEmpleado).DarNombre(), (TotalEmpleados[j + 1] as CEmpleado).DarNombre(), StringComparison.Ordinal) > 0)
+                        {
+                            // Intercambiar list[j] y list[j + 1]
+                            object temp = TotalEmpleados[j];
+                            TotalEmpleados[j] = TotalEmpleados[j + 1];
+                            TotalEmpleados[j + 1] = temp;
+                        }
+                        else if (string.Compare((TotalEmpleados[j] as CEmpleado).DarNombre(), (TotalEmpleados[j + 1] as CEmpleado).DarNombre(), StringComparison.Ordinal) == 0)
+                        {
+                            if ((TotalEmpleados[j] as CEmpleado).DarId() > (TotalEmpleados[j+1] as CEmpleado).DarId())
+                            {
+                                // Intercambiar list[j] y list[j + 1]
+                                object temp = TotalEmpleados[j];
+                                TotalEmpleados[j] = TotalEmpleados[j + 1];
+                                TotalEmpleados[j + 1] = temp;
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 }
