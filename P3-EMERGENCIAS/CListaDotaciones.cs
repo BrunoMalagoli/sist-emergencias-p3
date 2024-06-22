@@ -11,14 +11,13 @@ namespace Emergencias
     public class CListaDotaciones
     {
         private static ArrayList ColeccionDotaciones;
-        public CListaDotaciones()
-        {
-            ColeccionDotaciones = new ArrayList();
+        public CListaDotaciones() {
+             ColeccionDotaciones = new ArrayList();
         }
 
         public void DarDotaciones()
         {
-            foreach (CDotacion dota in ColeccionDotaciones)
+            foreach(CDotacion dota in ColeccionDotaciones)
             {
                 dota.MostrarDotacion();
             }
@@ -26,9 +25,8 @@ namespace Emergencias
 
         public bool AgregarDotacion(CDotacion dotacionRef)
         {
-
-            if (!ExisteVehiculoEnDotacion(dotacionRef.DarPatenteVehiculo()) && !ExisteChoferEnDotacion(dotacionRef.DarChoferId()) && !ExisteProfesionalesEnDotaciones(dotacionRef.DarListaProfesionales()))
-            {
+            
+            if (!ExisteVehiculoEnDotacion(dotacionRef.DarPatenteVehiculo()) && !ExisteChoferEnDotacion(dotacionRef.DarChoferId()) && !ExisteProfesionalesEnDotaciones(dotacionRef.DarListaProfesionales())) {
                 ColeccionDotaciones.Add(dotacionRef);
                 return true;
             }
@@ -36,7 +34,7 @@ namespace Emergencias
             {
                 return false;
             }
-
+               
         }
         public bool ExisteProfesionalesEnDotaciones(ArrayList profIdList)
         {
@@ -70,54 +68,24 @@ namespace Emergencias
         {
             foreach (CDotacion dota in ColeccionDotaciones)
             {
-                if (dota.DarChoferId() == choferID)
+                if(dota.DarChoferId() == choferID)
                 {
-                    return true;
+                    return true;    
                 }
             }
             return false;
         }
         public static bool ExisteVehiculoEnDotacion(string numpat)
         {
-            foreach (CDotacion dota in ColeccionDotaciones)
+            foreach(CDotacion dota in ColeccionDotaciones)
             {
-                if (dota.DarPatenteVehiculo() == numpat)
+                if(dota.DarPatenteVehiculo() == numpat)
                 {
                     return true;
                 }
             }
             return false;
         }
-        public void DarDotacionPorPatente(string patente)
-        {
-            foreach(CDotacion dota in ColeccionDotaciones)
-            {
-                if (dota.DarPatenteVehiculo() == patente)
-                {
-                    dota.MostrarDotacion();
-                }
-            }
-        }
 
-        public void EmpleadoPorIdEnDotacion(ulong idEmp) // BUSQUEDA DEL EMPLEADO EN DOTACION
-        {
-            foreach (CDotacion dota in ColeccionDotaciones)
-            {
-                if (dota.DarChoferId() == idEmp)
-                {
-                    Console.WriteLine("{0,-10}{1,-10}", "FECHA Y HORA DOTACION", "VEHICULO");
-                    Console.WriteLine("{0,-10}{1,-10}", dota.DarFechaDeDotacion(), dota.DarPatenteVehiculo());
-                }
-                else 
-                    foreach (ulong id in dota.DarListaProfesionales())
-                    {
-                        if (idEmp == id)
-                        {
-                            Console.WriteLine("{0,-10}{1,-10}", "FECHA Y HORA DOTACION", "VEHICULO");
-                            Console.WriteLine("{0,-10}{1,-10}", dota.DarFechaDeDotacion(), dota.DarPatenteVehiculo());
-                        }
-                    }
-            }   
-        }
     }
 }

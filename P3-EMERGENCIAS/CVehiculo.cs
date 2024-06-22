@@ -17,7 +17,7 @@ namespace Emergencias
         {
             if (patente == null)
             {
-                return "No se proporicono una patente";
+                return "\tNo se proporicono una patente";
             }
             return patente;
         }
@@ -25,7 +25,7 @@ namespace Emergencias
         {
             if (marca == null)
             {
-                return "No se proporicono una marca";
+                return "\tNo se proporicono una marca";
             }
             return marca;
         }
@@ -33,7 +33,7 @@ namespace Emergencias
         {
             if (modelo == null)
             {
-                return "No se proporicono una modelo";
+                return "\tNo se proporicono una modelo";
             }
             return modelo;
         }

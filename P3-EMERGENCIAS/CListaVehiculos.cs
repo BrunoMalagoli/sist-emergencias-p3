@@ -65,17 +65,24 @@ namespace Emergencias
         }
         private void MostrarDatosVehiculo(CAuto auto)
         {
-            Console.WriteLine("{0,-12}{1,-12}{2,-12}", auto.DarPatente() , auto.DarMarca() , auto.DarModelo());
+            Console.WriteLine("\t{0,-12}{1,-12}{2,-12}", auto.DarPatente() , auto.DarMarca() , auto.DarModelo());
         }
         private void MostrarDatosVehiculo(CAmbulancia ambu)
         {
-            Console.WriteLine("{0,-12}{1,-12}{2,-12}{3,-12}", ambu.DarPatente() , ambu.DarMarca() , ambu.DarModelo() , ambu.DarTipoAmbulancia() );
+            Console.WriteLine("\t{0,-12}{1,-12}{2,-12}{3,-12}", ambu.DarPatente() , ambu.DarMarca() , ambu.DarModelo() , ambu.DarTipoAmbulancia() );
         }
         private void JuntarListas()
         {
             if(AmbulanciasCollection.Count > 0 && AutosCollection.Count > 0)
             {
                 TotalVehiculos.AddRange(AmbulanciasCollection);
+                TotalVehiculos.AddRange(AutosCollection);
+            }
+            else if(AmbulanciasCollection.Count > 0)
+            {
+                TotalVehiculos.AddRange(AmbulanciasCollection);
+            }else
+            {
                 TotalVehiculos.AddRange(AutosCollection);
             }
     
@@ -110,45 +117,45 @@ namespace Emergencias
             JuntarListas();
             OrdenarListas();
 
-           
             if (TotalVehiculos.Count > 0)
             {
-                Console.WriteLine("{0,-12}{1,-12}{2,-12}{3,-12}", "PATENTE", "MARCA", "MODELO", "TIPO");
+                Console.WriteLine("\t\t\t{0,-12}{1,-12}{2,-12}{3,-12}", "PATENTE", "MARCA", "MODELO", "TIPO");
                 foreach (object vehiculo in TotalVehiculos)
                 {
                     if (vehiculo is CAuto)
                     {
+                        Console.Write("\tAuto       : ");
                         MostrarDatosVehiculo((CAuto)vehiculo);
                     }
                     else if (vehiculo is CAmbulancia)
                     {
+                        Console.Write("\tAmbulancia : ");
                         MostrarDatosVehiculo((CAmbulancia)vehiculo);
                     }
                 }
             }
             else
             {
-                Console.WriteLine("No hay vehiculos cargados en la lista");
+                Console.WriteLine("\tNo hay vehiculos cargados en la lista");
             }
             
             TotalVehiculos.Clear();
         }
 
-        //METODOS PARA TESTEAR
         internal void MostrarListaAutos()
         {
-            Console.WriteLine("{0,-12}{1,-12}{2,-12}  ", "PATENTE", "MARCA", "MODELO");
+            Console.WriteLine("\t{0,-12}{1,-12}{2,-12}", "PATENTE", "MARCA", "MODELO");
             foreach (CAuto Autos in AutosCollection)
             {
-                Console.WriteLine("{0,-12}{1,-12}{2,-12}  ", Autos.DarPatente(), Autos.DarMarca(), Autos.DarModelo());
+                Console.WriteLine("\t{0,-12}{1,-12}{2,-12}  ", Autos.DarPatente(), Autos.DarMarca(), Autos.DarModelo());
             }
         }
         internal void MostrarListaAmbulancias()
         {
-            Console.WriteLine("{0,-12}{1,-12}{2,-12}{3,-12}  ", "PATENTE", "MARCA", "MODELO","TIPO");
+            Console.WriteLine("\t{0,-12}{1,-12}{2,-12}{3,-12}  ", "PATENTE", "MARCA", "MODELO","TIPO");
             foreach (CAmbulancia Ambu in AmbulanciasCollection)
             {
-                Console.WriteLine("{0,-12}{1,-12}{2,-12}{3,-12}  ", Ambu.DarPatente(), Ambu.DarMarca(), Ambu.DarModelo(),Ambu.DarTipoAmbulancia());
+                Console.WriteLine("\t{0,-12}{1,-12}{2,-12}{3,-12}  ", Ambu.DarPatente(), Ambu.DarMarca(), Ambu.DarModelo(),Ambu.DarTipoAmbulancia());
             }
         }
     }
