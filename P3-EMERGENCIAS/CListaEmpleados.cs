@@ -154,7 +154,7 @@ namespace Emergencias
             }
             return;
         }
-        public void BuscarEmpleadoPorId(ulong idEmp) // TODO : OPTIMIZAR BUSQUEDA.
+        public bool BuscarEmpleadoPorId(ulong idEmp) // TODO : OPTIMIZAR BUSQUEDA.
         {
             JuntarListas();
             foreach(object empleado in TotalEmpleados)
@@ -169,7 +169,7 @@ namespace Emergencias
                             ((CChofer)empleado).DarNumRegistro().ToString(), 
                             ((CChofer)empleado).DarDistritoEmision());
                         TotalEmpleados.Clear();
-                        return;
+                        return true;
                     }
                 }else if(empleado is CProfesional)
                 {
@@ -181,13 +181,58 @@ namespace Emergencias
                             ((CProfesional)empleado).DarApellido(), 
                             ((CProfesional)empleado).DarMatricula().ToString(), 
                             ((CProfesional)empleado).DarCategoria()); 
-                        TotalEmpleados.Clear();  
-                        return;
+                        TotalEmpleados.Clear();
+                        return true;
                     }
                 }
             }
             TotalEmpleados.Clear();
             Console.WriteLine("\tNo se encontro resultado");
+            return false;
+        }
+
+        public void OrdenarListaEmpleados(ArrayList listaEmp)
+        {
+
+            /*
+            Para utilizar este metodo primero hay que llamar al metodo: JuntarListas().
+            */
+            int n = TotalEmpleados.Count;
+
+
+            for (int i = 0; i < n - 1; i++)
+            {
+                for (int j = 0; j < n - i - 1; j++)
+                {
+                    if (string.Compare((TotalEmpleados[j] as CEmpleado).DarApellido(), (TotalEmpleados[j + 1] as CEmpleado).DarApellido(), StringComparison.Ordinal) > 0)
+                    {
+                        // Intercambiar list[j] y list[j + 1]
+                        object temp = TotalEmpleados[j];
+                        TotalEmpleados[j] = TotalEmpleados[j + 1];
+                        TotalEmpleados[j + 1] = temp;
+                    }
+                    else if (string.Compare((TotalEmpleados[j] as CEmpleado).DarApellido(), (TotalEmpleados[j + 1] as CEmpleado).DarApellido(), StringComparison.Ordinal) == 0)
+                    {
+                        if (string.Compare((TotalEmpleados[j] as CEmpleado).DarNombre(), (TotalEmpleados[j + 1] as CEmpleado).DarNombre(), StringComparison.Ordinal) > 0)
+                        {
+                            // Intercambiar list[j] y list[j + 1]
+                            object temp = TotalEmpleados[j];
+                            TotalEmpleados[j] = TotalEmpleados[j + 1];
+                            TotalEmpleados[j + 1] = temp;
+                        }
+                        else if (string.Compare((TotalEmpleados[j] as CEmpleado).DarNombre(), (TotalEmpleados[j + 1] as CEmpleado).DarNombre(), StringComparison.Ordinal) == 0)
+                        {
+                            if ((TotalEmpleados[j] as CEmpleado).DarId() > (TotalEmpleados[j + 1] as CEmpleado).DarId())
+                            {
+                                // Intercambiar list[j] y list[j + 1]
+                                object temp = TotalEmpleados[j];
+                                TotalEmpleados[j] = TotalEmpleados[j + 1];
+                                TotalEmpleados[j + 1] = temp;
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 }

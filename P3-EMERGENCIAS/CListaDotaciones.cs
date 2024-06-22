@@ -86,6 +86,35 @@ namespace Emergencias
             }
             return false;
         }
-
+        public void DarDotacionPorPatente(string patente)
+        {
+            foreach (CDotacion dota in ColeccionDotaciones)
+            {
+                if (dota.DarPatenteVehiculo() == patente)
+                {
+                    dota.MostrarDotacion();
+                }
+            }
+        }
+        public void EmpleadoPorIdEnDotacion(ulong idEmp) // BUSQUEDA DEL EMPLEADO EN DOTACION
+        {
+            foreach (CDotacion dota in ColeccionDotaciones)
+            {
+                if (dota.DarChoferId() == idEmp)
+                {
+                    Console.WriteLine("{0,-10}{1,-10}", "FECHA Y HORA DOTACION", "VEHICULO");
+                    Console.WriteLine("{0,-10}{1,-10}", dota.DarFechaDeDotacion(), dota.DarPatenteVehiculo());
+                }
+                else
+                    foreach (ulong id in dota.DarListaProfesionales())
+                    {
+                        if (idEmp == id)
+                        {
+                            Console.WriteLine("{0,-10}{1,-10}", "FECHA Y HORA DOTACION", "VEHICULO");
+                            Console.WriteLine("{0,-10}{1,-10}", dota.DarFechaDeDotacion(), dota.DarPatenteVehiculo());
+                        }
+                    }
+            }
+        }
     }
 }

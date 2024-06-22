@@ -111,7 +111,10 @@ namespace Emergencias
         {
             return idChofer;
         }
-
+        public DateTime DarFechaDeDotacion()
+        {
+            return fecha;
+        }
         public void AsignarChofer()
         {
             ulong idC;

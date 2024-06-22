@@ -31,6 +31,7 @@ namespace Emergencias
             Console.WriteLine("\t5.Mostrar todos los empleados");
             Console.WriteLine("\t6.Mostrar todos los vehiculos");
             Console.WriteLine("\t7.Eliminar empleado por id");
+            Console.WriteLine("\t8.Mostrar dotacion por patente");
             Console.WriteLine("\t0.Salir");
             Console.WriteLine("\t===============================");
             Console.Write("\t>");
@@ -267,6 +268,14 @@ namespace Emergencias
                         Console.WriteLine("\tId no válido. Debe ser numérico. Reintentando.");
                         Console.Write("\tIngrese Id para buscar empleado: ");
                     }
+                    if (listaEmpleados.BuscarEmpleadoPorId(IdEmp))
+                    {
+                        if (listaDotaciones.ExisteProfesionalesEnDotaciones(IdEmp) || listaDotaciones.ExisteChoferEnDotacion(IdEmp))
+                        {
+                            listaDotaciones.EmpleadoPorIdEnDotacion(IdEmp);
+                        }
+                        else Console.WriteLine("El empleado no integra ninguna dotacion.");
+                    }
                     listaEmpleados.BuscarEmpleadoPorId(IdEmp);
                     Console.Write("\n\tPresione Enter para continuar...");
                     Console.ReadLine();
@@ -334,6 +343,10 @@ namespace Emergencias
                             Console.Write("\n\tIngreso una opcion invalida. Vuelva a intentarlo..");
                             break;
                     }
+                    break;
+                case "8":
+                    Console.Write("\tIngrese patente de vehiculo: ");
+                    listaDotaciones.DarDotacionPorPatente(Console.ReadLine());
                     break;
                 default:
                     Console.WriteLine("\tEl valor ingresado no es valido, ingrese una opcion del menu.");
