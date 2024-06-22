@@ -102,16 +102,16 @@ namespace Emergencias
             {
                 if (dota.DarChoferId() == idEmp)
                 {
-                    Console.WriteLine("{0,-10}{1,-10}", "FECHA Y HORA DOTACION", "VEHICULO");
-                    Console.WriteLine("{0,-10}{1,-10}", dota.DarFechaDeDotacion(), dota.DarPatenteVehiculo());
+                    Console.WriteLine("\t{0,-10}{1,-10}", "FECHA Y HORA DOTACION", "VEHICULO");
+                    Console.WriteLine("\t{0,-10}{1,-10}", dota.DarFechaDeDotacion(), dota.DarPatenteVehiculo());
                 }
                 else
                     foreach (ulong id in dota.DarListaProfesionales())
                     {
                         if (idEmp == id)
                         {
-                            Console.WriteLine("{0,-10}{1,-10}", "FECHA Y HORA DOTACION", "VEHICULO");
-                            Console.WriteLine("{0,-10}{1,-10}", dota.DarFechaDeDotacion(), dota.DarPatenteVehiculo());
+                            Console.WriteLine("\t{0,-10}{1,-10}", "FECHA Y HORA DOTACION", "VEHICULO");
+                            Console.WriteLine("\t{0,-10}{1,-10}", dota.DarFechaDeDotacion(), dota.DarPatenteVehiculo());
                         }
                     }
             }

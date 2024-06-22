@@ -274,7 +274,7 @@ namespace Emergencias
                         {
                             listaDotaciones.EmpleadoPorIdEnDotacion(IdEmp);
                         }
-                        else Console.WriteLine("El empleado no integra ninguna dotacion.");
+                        else Console.WriteLine("\tEl empleado no integra ninguna dotacion.");
                     }
                     listaEmpleados.BuscarEmpleadoPorId(IdEmp);
                     Console.Write("\n\tPresione Enter para continuar...");
@@ -347,9 +347,13 @@ namespace Emergencias
                 case "8":
                     Console.Write("\tIngrese patente de vehiculo: ");
                     listaDotaciones.DarDotacionPorPatente(Console.ReadLine());
+                    Console.Write("\n\tPresione Enter para continuar...");
+                    Console.ReadLine();
                     break;
                 default:
                     Console.WriteLine("\tEl valor ingresado no es valido, ingrese una opcion del menu.");
+                    Console.Write("\n\tPresione Enter para continuar...");
+                    Console.ReadLine();
                     break;
             }
             MostrarMenu();
