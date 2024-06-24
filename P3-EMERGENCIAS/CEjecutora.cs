@@ -10,7 +10,7 @@ namespace Emergencias
         {
             CMenu menu = new CMenu();
             menu.MostrarMenu();
-        }
+        } 
     }
 }
 
