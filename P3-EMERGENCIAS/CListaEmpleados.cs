@@ -116,6 +116,7 @@ namespace Emergencias
         public void MostrarListaEmpleados()
         {
             JuntarListas();
+            OrdenarListaEmpleados();
             Console.WriteLine("\t{0,-10}{1,-10}{2,-10}{3,-10}{4,-10}", "ID", "APELLIDO", "NOMBRE", "MAT/REG", "CAT/DIST");
             foreach (object empleado in TotalEmpleados)
             {
@@ -191,7 +192,7 @@ namespace Emergencias
             return false;
         }
 
-        public void OrdenarListaEmpleados(ArrayList listaEmp)
+        public void OrdenarListaEmpleados()
         {
 
             /*

@@ -259,6 +259,8 @@ namespace Emergencias
                     {
                         Console.WriteLine("\tLa dotacion tiene elementos asignados en otra ya existente, cambie los datos y vuelva a intentarlo");
                     }
+                    Console.WriteLine("\tPulse enter para continuar...");
+                    Console.Read();
                     break;
                 case "4":
                     Console.Write("\tIngrese Id para buscar empleado: ");
